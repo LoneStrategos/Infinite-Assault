@@ -5,11 +5,13 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     bool canBeDestroyed = false;
+    public int pointValue = 100;
+    Score score;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        score = FindObjectOfType<Score>();
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class Destructible : MonoBehaviour
         {
             if (!bullet.isEnemy)
             {
+                score.AddScore(pointValue);
                 Destroy(gameObject);
                 Destroy(bullet.gameObject);
             }

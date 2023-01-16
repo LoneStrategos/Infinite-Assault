@@ -27,10 +27,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveUp = Input.GetKey(KeyCode.UpArrow);
-        moveDown = Input.GetKey(KeyCode.DownArrow);
-        moveLeft = Input.GetKey(KeyCode.LeftArrow);
-        moveRight = Input.GetKey(KeyCode.RightArrow);
+        moveUp = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
+        moveDown = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        moveLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
+        moveRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
         shoot = Input.GetKeyDown(KeyCode.Space);
 
         if (shoot)

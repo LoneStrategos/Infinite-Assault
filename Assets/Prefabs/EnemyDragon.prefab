@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182f2209da978294a94abb0b54d11eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointValue: 200
 --- !u!95 &8395206564300317940
 Animator:
   serializedVersion: 3
