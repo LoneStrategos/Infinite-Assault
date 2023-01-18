@@ -13,18 +13,23 @@ public class Gun : MonoBehaviour
     float shootTimer = 0f;
     float delayTimer = 0f;
 
-    AudioClip[] PlayerGun;
-    private AudioSource GunShooting;
+    public AudioClip PlayerGun;
+    public AudioSource GunShooting;
 
-    public void Awake()
-    {
-        GunShooting = GameObject.Find("GunShooting").GetComponent<AudioSource>();
-    }
+    public int powerUpGunRequirement = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GunShooting = GetComponent<AudioSource>();
+        if (GunShooting == null)
+        {
+            
+        }
+        else
+        {
+            GunShooting.clip = PlayerGun;
+        }
     }
 
     // Update is called once per frame
@@ -58,21 +63,13 @@ public class Gun : MonoBehaviour
         }
     }
 
-    //void PlayGunSound()
-    //{
-        //int shotSound = Random.Range(1, PlayerGun.Length);
-        //GunShooting.clip = PlayerGun[shotSound];
-        //GunShooting.PlayOneShot(GunShooting.clip);
-
-        //PlayerGun[shotSound] = PlayerGun[0];
-        //PlayerGun[0] = GunShooting.clip;
-    //}
-
     public void Shoot()
     {
-        //PlayGunSound();
+        GunShooting.PlayOneShot(PlayerGun);
 
         GameObject go = Instantiate(bullet.gameObject, transform.position, Quaternion.identity);
+        Bullet goBullet = go.GetComponent<Bullet>();
+        goBullet.direction = direction;
     }
 
 }
