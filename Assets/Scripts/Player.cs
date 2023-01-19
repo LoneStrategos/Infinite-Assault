@@ -16,10 +16,18 @@ public class Player : MonoBehaviour
     Score score;
     GameObject shield;
     int powerUpGuns = 0;
+    
+
+    private Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
+
+
+
         score = FindObjectOfType<Score>();
         shield = transform.Find("Shield").gameObject;
         DeactivateShield();
@@ -42,6 +50,33 @@ public class Player : MonoBehaviour
         moveLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
         moveRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
         shoot = Input.GetKeyDown(KeyCode.Space);
+
+        if (moveRight)
+        {
+            anim.SetBool("Jett_Anima_schnell", true);
+        }
+
+        else
+        {
+            anim.SetBool("Jett_Anima_schnell", false);
+        }
+
+        if (moveLeft)
+        {
+            anim.SetBool("Jett_Anima_langsam", true);
+        }
+
+        else
+        {
+            anim.SetBool("Jett_Anima_langsam", false);
+        }
+
+
+
+
+
+
+
 
         if (shoot)
         {
