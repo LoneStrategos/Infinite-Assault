@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScrollBG : MonoBehaviour
 {
     public float scrollSpeed = -5f;
+    public float length = 64;
     Vector2 startPos;
 
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class ScrollBG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float newPos = Mathf.Repeat(Time.time * scrollSpeed, 40);
+        float newPos = Mathf.Repeat(Time.time * scrollSpeed, length);
         transform.position = startPos + Vector2.right * newPos;
     }
 }

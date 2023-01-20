@@ -6,6 +6,8 @@ public class Destructible : MonoBehaviour
 {
     bool canBeDestroyed = false;
     public int pointValue = 100;
+    public int powerUpDropRate = 25;
+    public GameObject[] powerUpPrefabs;
     Score score;
 
     // Start is called before the first frame update
@@ -27,7 +29,6 @@ public class Destructible : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!canBeDestroyed)
@@ -42,6 +43,15 @@ public class Destructible : MonoBehaviour
                 score.AddScore(pointValue);
                 Destroy(gameObject);
                 Destroy(bullet.gameObject);
+
+                int dropPowerUp = Random.Range(0, 100);
+
+                if (dropPowerUp < powerUpDropRate)
+                {
+                    int randomPowerUp = Random.Range(0, powerUpPrefabs.Length);
+                    GameObject powerUpToSpawn = powerUpPrefabs[randomPowerUp];
+                    Instantiate(powerUpToSpawn, transform.position, Quaternion.identity);
+                }
             }
         }
     }

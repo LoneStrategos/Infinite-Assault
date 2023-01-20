@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     Score score;
     GameObject shield;
     int powerUpGuns = 0;
+    private float shootTimer = 0;
+    public float fireRate = 10f;
     
 
     private Animator anim;
@@ -49,7 +51,9 @@ public class Player : MonoBehaviour
         moveDown = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         moveLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
         moveRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
-        shoot = Input.GetKeyDown(KeyCode.Space);
+        shoot = Input.GetKey(KeyCode.Space);
+
+        shootTimer += Time.deltaTime;
 
         if (moveRight)
         {
@@ -78,9 +82,9 @@ public class Player : MonoBehaviour
 
 
 
-        if (shoot)
+        if (shoot && shootTimer >= (1/fireRate))
         {
-            shoot = false;
+            shootTimer = 0;
             foreach (Gun gun in guns)
             {
                 if (gun.gameObject.activeSelf)
