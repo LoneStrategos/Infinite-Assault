@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &39152544146740542
+--- !u!1 &267431259618538389
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3063449166933129848}
-  - component: {fileID: 5100744025898694260}
+  - component: {fileID: 754791646329972519}
+  - component: {fileID: 1337635474202342492}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -17,36 +17,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3063449166933129848
+--- !u!4 &754791646329972519
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39152544146740542}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.46, y: 0.24, z: 0}
+  m_GameObject: {fileID: 267431259618538389}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.203, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8598806036859569301}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &5100744025898694260
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1337635474202342492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39152544146740542}
+  m_GameObject: {fileID: 267431259618538389}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a69fe8e517446dc408601f5adeda4187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 830720566709274249, guid: 75bb339d8702c4e43b1bfa969d7c333d, type: 3}
-  isActive: 0
+  bullet: {fileID: 2674146907848153554, guid: f490a37d2d63e5841aa7d6a060002224, type: 3}
+  isActive: 1
   autoShoot: 1
-  shootIntervalSeconds: 1
+  shootIntervalSeconds: 2
   shootDelaySeconds: 0
   PlayerGun: {fileID: 0}
   GunShooting: {fileID: 0}
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 03f33b475597337499ad87c2f56853d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 300ed6fac66931249b8d866bf3b93ced, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,12 +143,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8598806036859569301}
   - component: {fileID: 250471849172477955}
+  - component: {fileID: 6269703414517996646}
   - component: {fileID: 4746337377028902101}
   - component: {fileID: -897985870200898605}
   - component: {fileID: 2977120441648944816}
-  - component: {fileID: 8395206564300317940}
   m_Layer: 0
-  m_Name: EnemyDragon
+  m_Name: EnemyWitchInverted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,7 +166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8598806036820536574}
-  - {fileID: 3063449166933129848}
+  - {fileID: 754791646329972519}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,7 +182,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d456e176bac3447978c24d08c47c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
+--- !u!114 &6269703414517996646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598806036859569303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ba7925e0ec73aa4698602cef8e4381c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 2
+  frequency: 0.5
+  inverted: 1
 --- !u!50 &4746337377028902101
 Rigidbody2D:
   serializedVersion: 4
@@ -228,7 +243,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
 --- !u!114 &2977120441648944816
 MonoBehaviour:
@@ -242,28 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182f2209da978294a94abb0b54d11eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 3
-  pointValue: 200
+  pointValue: 100
   powerUpDropRate: 25
-  powerUpPrefabs:
-  - {fileID: 8954968829268550235, guid: e0575d2642bf99c4dafc9cc1b8b1c6ca, type: 3}
-  - {fileID: 4857083987313664926, guid: f4dce1372399909458024ee6ab89668d, type: 3}
---- !u!95 &8395206564300317940
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8598806036859569303}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa83742688ae55d4086f005b29c4cb5e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  powerUpPrefabs: []

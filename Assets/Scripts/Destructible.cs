@@ -5,6 +5,7 @@ using UnityEngine;
 public class Destructible : MonoBehaviour
 {
     bool canBeDestroyed = false;
+    public int hitPoints = 1;
     public int pointValue = 100;
     public int powerUpDropRate = 25;
     public GameObject[] powerUpPrefabs;
@@ -40,17 +41,23 @@ public class Destructible : MonoBehaviour
         {
             if (!bullet.isEnemy)
             {
-                score.AddScore(pointValue);
-                Destroy(gameObject);
+                hitPoints--;
                 Destroy(bullet.gameObject);
 
-                int dropPowerUp = Random.Range(0, 100);
-
-                if (dropPowerUp < powerUpDropRate)
+                if (hitPoints <= 0)
                 {
-                    int randomPowerUp = Random.Range(0, powerUpPrefabs.Length);
-                    GameObject powerUpToSpawn = powerUpPrefabs[randomPowerUp];
-                    Instantiate(powerUpToSpawn, transform.position, Quaternion.identity);
+                    score.AddScore(pointValue);
+                    Destroy(gameObject);
+                    Destroy(bullet.gameObject);
+
+                    int dropPowerUp = Random.Range(0, 100);
+
+                    if (dropPowerUp < powerUpDropRate)
+                    {
+                        int randomPowerUp = Random.Range(0, powerUpPrefabs.Length);
+                        GameObject powerUpToSpawn = powerUpPrefabs[randomPowerUp];
+                        Instantiate(powerUpToSpawn, transform.position, Quaternion.identity);
+                    }
                 }
             }
         }
