@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 4746337377028902101}
   - component: {fileID: -897985870200898605}
   - component: {fileID: 2977120441648944816}
-  - component: {fileID: 8395206564300317940}
   m_Layer: 0
   m_Name: EnemyDragon
   m_TagString: Untagged
@@ -248,22 +247,3 @@ MonoBehaviour:
   powerUpPrefabs:
   - {fileID: 8954968829268550235, guid: e0575d2642bf99c4dafc9cc1b8b1c6ca, type: 3}
   - {fileID: 4857083987313664926, guid: f4dce1372399909458024ee6ab89668d, type: 3}
---- !u!95 &8395206564300317940
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8598806036859569303}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa83742688ae55d4086f005b29c4cb5e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
