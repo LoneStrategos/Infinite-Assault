@@ -6,22 +6,35 @@ public class Player : MonoBehaviour
 {
     Gun[] guns;
 
+    Vector2 startPos;
     public float moveSpeed = 5;
+
+    int hits = 3;
+    bool invincible = false;
+    float invincibleTimer = 0;
+    float invincibleDuration = 2;
 
     bool moveUp;
     bool moveDown;
     bool moveLeft;
     bool moveRight;
     bool shoot;
-    Score score;
-    GameObject shield;
-    int powerUpGuns = 0;
     private float shootTimer = 0;
     public float fireRate = 10f;
-    
 
+    SpriteRenderer spriteRenderer;
+    Score score;
+    Level level;
+    GameObject shield;
+    int powerUpGuns = 0;
+    
     private Animator anim;
 
+    private void Awake()
+    {
+        startPos = transform.position;
+        spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -75,12 +88,20 @@ public class Player : MonoBehaviour
             anim.SetBool("Jett_Anima_langsam", false);
         }
 
-
-
-
-
-
-
+        if (invincible)
+        {
+            if (invincibleTimer >= invincibleDuration)
+            {
+                invincibleTimer = 0;
+                invincible = false;
+                spriteRenderer.enabled = true;
+            }
+            else
+            {
+                invincibleTimer += Time.deltaTime;
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+            }
+        }
 
         if (shoot && shootTimer >= (1/fireRate))
         {
@@ -159,9 +180,13 @@ public class Player : MonoBehaviour
         powerUpGuns++;
         foreach (Gun gun in guns)
         {
-            if (gun.powerUpGunRequirement == powerUpGuns)
+            if (gun.powerUpGunRequirement <= powerUpGuns)
             {
                 gun.gameObject.SetActive(true);
+            }
+            else
+            {
+                gun.gameObject.SetActive(false);
             }
         }
     }
@@ -181,6 +206,39 @@ public class Player : MonoBehaviour
         return shield.activeSelf;
     }
 
+    void ResetPlayer()
+    {
+        transform.position = startPos;
+        DeactivateShield();
+        powerUpGuns = -1;
+        AddGuns();
+        hits = 3;
+    }
+
+    void Hit(GameObject gameObjectHit)
+    {
+        if (HasShield())
+        {
+            DeactivateShield();
+        }
+        else
+        {
+            if (!invincible)
+            {
+                hits--;
+                if (hits == 0)
+                {
+                    ResetPlayer();
+                }
+                else
+                {
+                    invincible = true;
+                }
+                Destroy(gameObjectHit);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Bullet bullet = collision.GetComponent<Bullet>();
@@ -188,23 +246,14 @@ public class Player : MonoBehaviour
         {
             if (bullet.isEnemy)
             {
-                Destroy(gameObject);
-                Destroy(bullet.gameObject);
+                Hit(bullet.gameObject);
             }
         }
 
         Destructible destructible = collision.GetComponent<Destructible>();
         if (destructible != null)
         {
-            if (HasShield())
-            {
-                DeactivateShield();
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            Destroy(destructible.gameObject);
+            Hit(destructible.gameObject);
         }
 
         PowerUp powerUp = collision.GetComponent<PowerUp>();

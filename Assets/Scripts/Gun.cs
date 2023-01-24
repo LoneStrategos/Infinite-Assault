@@ -12,11 +12,12 @@ public class Gun : MonoBehaviour
     public float shootDelaySeconds = 0f;
     float shootTimer = 0f;
     float delayTimer = 0f;
-
+    
     public AudioClip PlayerGun;
     public AudioSource GunShooting;
 
     public int powerUpGunRequirement = 0;
+    public GameObject muzzleFlash;
 
     // Start is called before the first frame update
     void Start()

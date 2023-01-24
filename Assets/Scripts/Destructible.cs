@@ -8,6 +8,7 @@ public class Destructible : MonoBehaviour
     public int hitPoints = 1;
     public int pointValue = 100;
     public int powerUpDropRate = 25;
+    public GameObject explosion;
     public GameObject[] powerUpPrefabs;
     Score score;
 
@@ -47,7 +48,7 @@ public class Destructible : MonoBehaviour
                 if (hitPoints <= 0)
                 {
                     score.AddScore(pointValue);
-                    Destroy(gameObject);
+                    DestroyEnemy();
                     Destroy(bullet.gameObject);
 
                     int dropPowerUp = Random.Range(0, 100);
@@ -62,4 +63,12 @@ public class Destructible : MonoBehaviour
             }
         }
     }
+
+    void DestroyEnemy()
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+    }
+
 }

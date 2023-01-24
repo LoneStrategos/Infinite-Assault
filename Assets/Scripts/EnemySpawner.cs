@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private IEnumerator Spawner ()
     {
-        WaitForSeconds wait = new WaitForSeconds(spawnRate);
+        WaitForSeconds wait = new WaitForSeconds(1f / spawnRate);
         while (canSpawn)
         {
             yield return wait;

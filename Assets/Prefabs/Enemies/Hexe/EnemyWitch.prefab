@@ -51,6 +51,7 @@ MonoBehaviour:
   PlayerGun: {fileID: 0}
   GunShooting: {fileID: 0}
   powerUpGunRequirement: 0
+  muzzleFlash: {fileID: 0}
 --- !u!1 &8598806036820536545
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +149,7 @@ GameObject:
   - component: {fileID: -897985870200898605}
   - component: {fileID: 2977120441648944816}
   m_Layer: 0
-  m_Name: EnemyWitchInverted
+  m_Name: EnemyWitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 2
   frequency: 0.5
-  inverted: 1
+  inverted: 0
 --- !u!50 &4746337377028902101
 Rigidbody2D:
   serializedVersion: 4
@@ -257,6 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182f2209da978294a94abb0b54d11eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoints: 1
   pointValue: 100
   powerUpDropRate: 25
+  explosion: {fileID: 868222598891527147, guid: 5e6cd9749689ab541855f8ccf7ed44d5, type: 3}
   powerUpPrefabs: []
