@@ -9,14 +9,11 @@ public class GameOver : MonoBehaviour
     Text gameOverText;
     Player player;
 
-    private void Awake()
-    {
-        player = FindObjectOfType<Player>();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindObjectOfType<Player>();
+
         gameOverText = GetComponentInChildren<Text>();
         StartFlashing();
     }
@@ -32,7 +29,7 @@ public class GameOver : MonoBehaviour
 
     public void Respawn()
     {
-        //ResetPlayer();
+        player.ResetPlayer();
     }
 
     IEnumerator GameOverFlickerRoutine()

@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Score score;
     Level level;
+    GameOver gameOver;
     GameObject shield;
     int powerUpGuns = 0;
 
