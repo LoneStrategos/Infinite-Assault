@@ -55,7 +55,6 @@ MonoBehaviour:
   explosion: {fileID: 868222598891527147, guid: 5e6cd9749689ab541855f8ccf7ed44d5, type: 3}
   powerUpPrefabs:
   - {fileID: 8954968829268550235, guid: e0575d2642bf99c4dafc9cc1b8b1c6ca, type: 3}
-  - {fileID: 4857083987313664926, guid: f4dce1372399909458024ee6ab89668d, type: 3}
 --- !u!50 &7281924271150144664
 Rigidbody2D:
   serializedVersion: 4

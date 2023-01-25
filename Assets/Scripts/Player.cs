@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     Level level;
     GameObject shield;
     int powerUpGuns = 0;
-    
+
     private Animator anim;
 
     private void Awake()
@@ -39,8 +39,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponentInChildren<Animator>();
 
+        anim = GetComponentInChildren<Animator>();
 
 
         score = FindObjectOfType<Score>();
@@ -68,25 +68,24 @@ public class Player : MonoBehaviour
 
         shootTimer += Time.deltaTime;
 
-        if (moveRight)
+      if(moveRight)
         {
-            anim.SetBool("Jett_Anima_schnell", true);
+            anim.SetBool("Jet_schnell", true);
         }
-
-        else
+      else
         {
-            anim.SetBool("Jett_Anima_schnell", false);
+            anim.SetBool("Jet_schnell", false);
         }
 
         if (moveLeft)
         {
-            anim.SetBool("Jett_Anima_langsam", true);
+            anim.SetBool("Jet_langsam", true);
         }
-
         else
         {
-            anim.SetBool("Jett_Anima_langsam", false);
+            anim.SetBool("Jet_langsam", false);
         }
+
 
         if (invincible)
         {
@@ -118,6 +117,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+
+
         Vector2 position = transform.position;
 
         float moveAmount = moveSpeed * Time.fixedDeltaTime;
@@ -206,7 +208,7 @@ public class Player : MonoBehaviour
         return shield.activeSelf;
     }
 
-    void ResetPlayer()
+    public void ResetPlayer()
     {
         transform.position = startPos;
         DeactivateShield();

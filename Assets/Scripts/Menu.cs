@@ -33,7 +33,7 @@ public class Menu : MonoBehaviour
     {
         while (true)
         {
-            startGameText.text = "Start Game!";
+            startGameText.text = "Press Space to Start Game!";
             yield return new WaitForSeconds(0.35f);
             startGameText.text = "";
             yield return new WaitForSeconds(0.35f);
