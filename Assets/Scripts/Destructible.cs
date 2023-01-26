@@ -21,7 +21,7 @@ public class Destructible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < 17.5f && !canBeDestroyed)
+        if (transform.position.x < 25f && !canBeDestroyed)
         {
             canBeDestroyed = true;
             Gun[] guns = transform.GetComponentsInChildren<Gun>();
@@ -42,24 +42,33 @@ public class Destructible : MonoBehaviour
         {
             if (!bullet.isEnemy)
             {
-                hitPoints--;
-                Destroy(bullet.gameObject);
-
-                if (hitPoints <= 0)
+                
+                if (bullet.isEnergyBall)
                 {
                     score.AddScore(pointValue);
                     DestroyEnemy();
+                }
+                else
+                {
+                    hitPoints--;
                     Destroy(bullet.gameObject);
 
-                    int dropPowerUp = Random.Range(0, 100);
-
-                    if (dropPowerUp < powerUpDropRate)
+                    if (hitPoints <= 0)
                     {
-                        int randomPowerUp = Random.Range(0, powerUpPrefabs.Length);
-                        GameObject powerUpToSpawn = powerUpPrefabs[randomPowerUp];
-                        Instantiate(powerUpToSpawn, transform.position, Quaternion.identity);
+                        score.AddScore(pointValue);
+                        DestroyEnemy();
+                        Destroy(bullet.gameObject);
+
+                        int dropPowerUp = Random.Range(0, 100);
+
+                        if (dropPowerUp < powerUpDropRate)
+                        {
+                            int randomPowerUp = Random.Range(0, powerUpPrefabs.Length);
+                            GameObject powerUpToSpawn = powerUpPrefabs[randomPowerUp];
+                            Instantiate(powerUpToSpawn, transform.position, Quaternion.identity);
+                        }
                     }
-                }
+                }               
             }
         }
     }

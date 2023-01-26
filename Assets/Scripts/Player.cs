@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -27,25 +29,30 @@ public class Player : MonoBehaviour
     Level level;
     GameOver gameOver;
     GameObject shield;
-    int powerUpGuns = 0;
+    public GameObject gameOverScreen;
+    public AudioSource music;
+    public SpriteRenderer targetSprite;
+    public GameObject playerShield;
 
+    int powerUpGuns = 0;
+    bool playerDead = false; 
     private Animator anim;
 
     private void Awake()
     {
         startPos = transform.position;
-        spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        //spriteRenderer = transform.Find("Sprite").GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer = targetSprite;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         anim = GetComponentInChildren<Animator>();
 
-
         score = FindObjectOfType<Score>();
-        shield = transform.Find("Shield").gameObject;
+        //shield = transform.Find("Shield").gameObject;
+        shield = playerShield;
         DeactivateShield();
         guns = transform.GetComponentsInChildren<Gun>();
         foreach (Gun gun in guns)
@@ -211,11 +218,14 @@ public class Player : MonoBehaviour
 
     public void ResetPlayer()
     {
-        transform.position = startPos;
-        DeactivateShield();
-        powerUpGuns = -1;
-        AddGuns();
-        hits = 3;
+        //transform.position = startPos;
+        //DeactivateShield();
+        //powerUpGuns = -1;
+        //AddGuns();
+        //hits = 3;
+        Time.timeScale = 0;
+        gameOverScreen.SetActive(true);
+        music.Pause();
     }
 
     void Hit(GameObject gameObjectHit)
@@ -231,7 +241,12 @@ public class Player : MonoBehaviour
                 hits--;
                 if (hits == 0)
                 {
-                    ResetPlayer();
+                    //ResetPlayer();
+                    playerDead = true;
+                    if (playerDead == true)
+                    {
+                        ResetPlayer();
+                    }
                 }
                 else
                 {

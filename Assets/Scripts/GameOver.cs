@@ -13,7 +13,6 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>();
-
         gameOverText = GetComponentInChildren<Text>();
         StartFlashing();
     }
@@ -29,7 +28,8 @@ public class GameOver : MonoBehaviour
 
     public void Respawn()
     {
-        player.ResetPlayer();
+        SceneManager.LoadScene("InGame");
+        Time.timeScale = 1;
     }
 
     IEnumerator GameOverFlickerRoutine()
