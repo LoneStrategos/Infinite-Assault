@@ -158,4 +158,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateShield: 0
   addGuns: 0
+  cyborgDragon: 1
   pointValue: 1000

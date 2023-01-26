@@ -40,8 +40,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        startPos = transform.position;
-        //spriteRenderer = transform.Find("Sprite").GetComponentInChildren<SpriteRenderer>();
+        startPos = transform.position;        
         spriteRenderer = targetSprite;
     }
 
@@ -50,8 +49,7 @@ public class Player : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
 
-        score = FindObjectOfType<Score>();
-        //shield = transform.Find("Shield").gameObject;
+        score = FindObjectOfType<Score>();        
         shield = playerShield;
         DeactivateShield();
         guns = transform.GetComponentsInChildren<Gun>();
@@ -61,7 +59,7 @@ public class Player : MonoBehaviour
             if (gun.powerUpGunRequirement != 0)
             {
                 gun.gameObject.SetActive(false);
-            }
+            }           
         }
     }
 
@@ -216,16 +214,66 @@ public class Player : MonoBehaviour
         return shield.activeSelf;
     }
 
+    void CyborgDragonMode()
+    {
+        invincible = true;
+        invincibleDuration = 10;
+        powerUpGuns--;
+        powerUpGuns--;
+        powerUpGuns--;
+        foreach (Gun gun in guns)
+        {
+            if (gun.powerUpGunRequirement <= powerUpGuns)
+            {
+                gun.gameObject.SetActive(true);
+            }
+            else
+            {
+                gun.gameObject.SetActive(false);
+            }
+        }
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+        fireRate = 1f;
+    }
+
+    void JetMode()
+    {
+        invincible = false;
+        invincibleDuration = 2;
+        powerUpGuns++;
+        powerUpGuns++;
+        powerUpGuns++;
+        foreach (Gun gun in guns)
+        {
+            if (gun.powerUpGunRequirement <= powerUpGuns)
+            {
+                gun.gameObject.SetActive(true);
+            }
+            else
+            {
+                gun.gameObject.SetActive(false);
+            }
+        }
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(true);
+        fireRate = 10f;
+    }
+
     public void ResetPlayer()
     {
-        //transform.position = startPos;
-        //DeactivateShield();
-        //powerUpGuns = -1;
-        //AddGuns();
-        //hits = 3;
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
         music.Pause();
+    }
+
+    IEnumerator PowerUpTimer()
+    {
+        CyborgDragonMode();
+
+        yield return new WaitForSeconds(10f);
+
+        JetMode();
     }
 
     void Hit(GameObject gameObjectHit)
@@ -241,7 +289,7 @@ public class Player : MonoBehaviour
                 hits--;
                 if (hits == 0)
                 {
-                    //ResetPlayer();
+                    
                     playerDead = true;
                     if (playerDead == true)
                     {
@@ -284,6 +332,10 @@ public class Player : MonoBehaviour
             if (powerUp.addGuns)
             {
                 AddGuns();
+            }
+            if (powerUp.cyborgDragon)
+            {               
+                StartCoroutine("PowerUpTimer");               
             }
             score.AddScore(powerUp.pointValue);
             Destroy(powerUp.gameObject);

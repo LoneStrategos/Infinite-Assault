@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         if (!isEnemy)
         {
-            Destroy(gameObject, 2);
+            Destroy(gameObject, 3);
         }
         else
         {

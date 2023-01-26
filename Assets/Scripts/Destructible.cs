@@ -21,14 +21,18 @@ public class Destructible : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < 25f && !canBeDestroyed)
+        if (transform.position.x < 20f)
         {
-            canBeDestroyed = true;
             Gun[] guns = transform.GetComponentsInChildren<Gun>();
             foreach (Gun gun in guns)
             {
                 gun.isActive = true;
             }
+        }
+
+        if (transform.position.x < 17f && !canBeDestroyed)
+        {
+            canBeDestroyed = true;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
