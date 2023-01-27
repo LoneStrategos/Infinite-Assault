@@ -239,7 +239,7 @@ public class Player : MonoBehaviour
 
     void JetMode()
     {
-        invincible = false;
+        invincible = false;       
         invincibleDuration = 2;
         powerUpGuns++;
         powerUpGuns++;
@@ -300,7 +300,7 @@ public class Player : MonoBehaviour
                 {
                     invincible = true;
                 }
-                Destroy(gameObjectHit);
+                Destroy(gameObjectHit);               
             }
         }
     }
