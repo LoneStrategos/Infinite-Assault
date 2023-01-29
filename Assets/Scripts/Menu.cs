@@ -22,6 +22,11 @@ public class Menu : MonoBehaviour
         {
             StartGame();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void StartGame()

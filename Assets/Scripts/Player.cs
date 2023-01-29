@@ -199,6 +199,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    void RemoveGuns()
+    {
+        powerUpGuns--;
+        foreach (Gun gun in guns)
+        {
+            if (gun.powerUpGunRequirement <= powerUpGuns)
+            {
+                gun.gameObject.SetActive(true);
+            }
+            else
+            {
+                gun.gameObject.SetActive(false);
+            }
+        }
+    }
+
     void ActivateShield()
     {
         shield.SetActive(true);
@@ -276,6 +292,15 @@ public class Player : MonoBehaviour
         JetMode();
     }
 
+    IEnumerator GunTimer()
+    {
+        AddGuns();
+
+        yield return new WaitForSeconds(10f);
+
+        RemoveGuns();
+    }
+
     void Hit(GameObject gameObjectHit)
     {
         if (HasShield())
@@ -331,7 +356,7 @@ public class Player : MonoBehaviour
             }
             if (powerUp.addGuns)
             {
-                AddGuns();
+                StartCoroutine("GunTimer");
             }
             if (powerUp.cyborgDragon)
             {               

@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   pointValue: 100
-  powerUpDropRate: 15
+  powerUpDropRate: 10
   explosion: {fileID: 868222598891527147, guid: 5e6cd9749689ab541855f8ccf7ed44d5, type: 3}
   powerUpPrefabs:
   - {fileID: 4857083987313664926, guid: f4dce1372399909458024ee6ab89668d, type: 3}

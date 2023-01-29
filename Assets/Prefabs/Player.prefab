@@ -51,7 +51,7 @@ MonoBehaviour:
   shootDelaySeconds: 2
   PlayerGun: {fileID: 8300000, guid: b0b14455956dc7e42ba4a1093e5b67df, type: 3}
   GunShooting: {fileID: 6879251159530690277}
-  powerUpGunRequirement: 2
+  powerUpGunRequirement: 1
 --- !u!82 &6879251159530690277
 AudioSource:
   m_ObjectHideFlags: 0
