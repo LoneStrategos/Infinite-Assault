@@ -7,6 +7,7 @@ public class Level : MonoBehaviour
 {
     public static Level instance;
     string[] levels = { "TitleScreen", "InGame" };
+    public GameObject additionalSpawwners;
 
     private void Awake()
     {
@@ -17,11 +18,18 @@ public class Level : MonoBehaviour
     void Start()
     {
         FindObjectOfType<Score>();
+        StartCoroutine(ActivateSpawners());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    IEnumerator ActivateSpawners()
+    {
+        yield return new WaitForSeconds(30f);
+        additionalSpawwners.SetActive(true);
     }
 }
